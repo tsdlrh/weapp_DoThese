@@ -1,0 +1,23 @@
+<!--pages/dothese/dothese.wxml-->
+<view class="container">
+   <view class="header">
+    <image src="plus.png" bindtap="addTodoHandle"></image>
+    <input type="text" placeholder="可填写的任务..." value="{{ input}}" bindinput="inputChangeHander"
+     bindconfirm="addTodoHandle"/>
+   </view>
+ <block wx:if="{{ dothese.length }}">
+    <view class="dothese">
+     <view class="item{{ item.completed ? ' completed': ''}}" wx:for ="{{ dothese }}" wx:key ="{{ index  }}" bindtap="toggleTohandle"
+      data-index="{{ index }}">
+     <icon type="{{ item.completed ? 'success': 'circle'}}"/>
+     <text>{{ item.name }}</text>
+     <icon type="clear" size="16" catchtap="removeHandle" data-index="{{ index }}"/>
+    </view>
+  <view class="footer">
+    <text bindtap="toggleAllHnadle">勾选所有</text>
+    <text  wx:if= "{{ leftCount }}"> {{ leftCount }} 个待办项目</text>
+    <text bindtap="clearHandle">清除完成项目</text>
+    </view>
+    </view>
+ </block>
+</view>
